@@ -30,7 +30,7 @@ public partial class BlinkWindow : Window
         
         new Thread(() =>
         {
-            Thread.Sleep(600);
+            Thread.Sleep(500);
             Dispatcher.UIThread.InvokeAsync(() => Close());
         }).Start();
         
