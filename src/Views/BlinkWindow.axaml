@@ -9,5 +9,5 @@
         Topmost="True" 
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="NoChrome"
-        Background="Black"
+        Background="#000000"
         BorderThickness="0"/>

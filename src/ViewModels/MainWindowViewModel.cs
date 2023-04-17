@@ -36,7 +36,7 @@ public class MainWindowViewModel : ViewModelBase
             {
                 var json = File.ReadAllText("data.json");
                 var data = JsonConvert.DeserializeObject<DbModel>(json);
-                BlinkCount = data.BlinkCount <= 30 ? data.BlinkCount : 30;
+                BlinkCount = data.BlinkCount <= 15 ? data.BlinkCount : 15;
                 return;
             }
             catch (Exception)
@@ -45,7 +45,7 @@ public class MainWindowViewModel : ViewModelBase
             }
         }
 
-        var model = new DbModel() { BlinkCount = 15 };
+        var model = new DbModel() { BlinkCount = 5 };
         var jsonModel = JsonConvert.SerializeObject(model);
         File.WriteAllText("data.json", jsonModel);
     }
