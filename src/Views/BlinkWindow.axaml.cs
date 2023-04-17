@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Avalonia;
 using Avalonia.Controls;
@@ -30,7 +31,7 @@ public partial class BlinkWindow : Window
         
         new Thread(() =>
         {
-            Thread.Sleep(500);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             Dispatcher.UIThread.InvokeAsync(() => Close());
         }).Start();
         
