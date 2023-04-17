@@ -1,20 +1,21 @@
 ﻿using System;
 using System.IO;
+using BlinkBro.Models;
+using BlinkBro.Services;
 using Newtonsoft.Json;
 using ReactiveUI;
 
 namespace BlinkBro.ViewModels;
 
-public class Model
-{
-    [JsonProperty("BlinkCount")] public int BlinkCount { get; set; }
-}
 
 public class MainWindowViewModel : ViewModelBase
 {
     public MainWindowViewModel()
     {
         OpenDb();
+        BlinkService.Current.BlinkCount = BlinkCount;
+        BlinkService.Current.Start();
+        
         this.WhenAnyValue(x => x.BlinkCount)
             .Subscribe((i => UpdateDb()));
     }
@@ -34,7 +35,7 @@ public class MainWindowViewModel : ViewModelBase
             try
             {
                 var json = File.ReadAllText("data.json");
-                var data = JsonConvert.DeserializeObject<Model>(json);
+                var data = JsonConvert.DeserializeObject<DbModel>(json);
                 BlinkCount = data.BlinkCount <= 30 ? data.BlinkCount : 30;
                 return;
             }
@@ -44,13 +45,14 @@ public class MainWindowViewModel : ViewModelBase
             }
         }
 
-        var model = new Model() { BlinkCount = 15 };
+        var model = new DbModel() { BlinkCount = 15 };
         var jsonModel = JsonConvert.SerializeObject(model);
         File.WriteAllText("data.json", jsonModel);
     }
 
     private void UpdateDb()
     {
-        File.WriteAllText("data.json", JsonConvert.SerializeObject(new Model() { BlinkCount = BlinkCount }));
+        BlinkService.Current.BlinkCount = BlinkCount;
+        File.WriteAllText("data.json", JsonConvert.SerializeObject(new DbModel() { BlinkCount = BlinkCount }));
     }
 }
