@@ -6,14 +6,34 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="BlinkBro.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
+        Width="400" Height="200"
+        Icon="/Assets/logo.ico"
         Title="BlinkBro">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-    <Grid>
-        
+    <Grid RowDefinitions="Auto, *">
+        <StackPanel Grid.Row="0" Margin="0,20,0,0"
+                    HorizontalAlignment="Center" Orientation="Horizontal"
+                    Height="22">
+            <TextBlock Text="Blink Bro" Margin="0,0,5,0"
+                       FontFamily="{StaticResource QuickSandBold}"
+                       FontSize="25" VerticalAlignment="Center"/>
+            <Image Source="../Assets/eye.png" Width="32" Height="32"
+                   VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="25,-20,0,0" VerticalAlignment="Center">
+            <TextBlock Text="Set the number of blinks you want per minute" 
+                       Margin="0,0,0,10"
+                       FontFamily="{StaticResource QuickSandRegular}"
+                       FontSize="16" HorizontalAlignment="Left" TextAlignment="Left"/>
+            <NumericUpDown Value="{Binding BlinkCount}" 
+                           Width="250" Increment="1"
+                           Minimum="1" Maximum="30" 
+                           FontSize="16" FontFamily="{StaticResource QuickSandRegular}"
+                           HorizontalAlignment="Left"/>
+        </StackPanel>
     </Grid>
 
 </Window>

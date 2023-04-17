@@ -10,4 +10,9 @@
     <Application.Styles>
         <FluentTheme Mode="Light"/>
     </Application.Styles>
+    
+    <Application.Resources>
+        <FontFamily x:Key="QuickSandRegular">avares://BlinkBro/Assets/Quicksand-Regular.ttf#Quicksand</FontFamily>
+        <FontFamily x:Key="QuickSandBold">avares://BlinkBro/Assets/Quicksand-Bold.ttf#Quicksand</FontFamily>
+    </Application.Resources>
 </Application>
